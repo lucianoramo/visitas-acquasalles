@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model clientes {
+  id                  String  @id @db.VarChar(255)
+  cnpj                String  @db.VarChar(255)
+  razao_social        String  @db.VarChar(255)
+  nome                String  @db.VarChar(255)
+  telefone            String  @db.VarChar(255)
+  email               String  @db.VarChar(255)
+  cidade              String  @db.VarChar(255)
+  Estado              String  @db.VarChar(255)
+  endereco_sem_cidade String  @db.VarChar(255)
+  bairro              String  @db.VarChar(255)
+  cep                 String  @db.VarChar(255)
+  endereco            String  @db.VarChar(255)
+  valor_contrato      Decimal @db.Decimal(10, 2)
+}
+
+model equipamentos {
+  id               String   @id @db.VarChar(255)
+  cliente          String   @db.VarChar(255)
+  nome_equipamento String   @db.VarChar(255)
+  foto             String?  @db.VarChar(255)
+  observacao       String?  @db.VarChar(255)
+  descricao        String?  @db.VarChar(255)
+  tecnico          String?  @db.VarChar(255)
+  inserirFoto      Boolean?
+}
+
+model fotos {
+  id            String  @id @db.VarChar(255)
+  idEquipamento String  @db.VarChar(255)
+  foto          String? @db.VarChar(255)
+  obs           String? @db.VarChar(255)
+}
+
+model medicoes {
+  id_visita           String   @db.VarChar(255)
+  id_medicao          String   @id @db.VarChar(255)
+  hora                String?  @db.VarChar(255)
+  cloro_encontrado    String?  @db.VarChar(255)
+  cloro_corrigido     String?  @db.VarChar(255)
+  ph_encontrado       String?  @db.VarChar(255)
+  ph_corrigido        String?  @db.VarChar(255)
+  turbidez_encontrada String?  @db.VarChar(255)
+  turbidez_corrigida  String?  @db.VarChar(255)
+  local               String?  @db.VarChar(255)
+  para_analise        Boolean?
+}
+
+model produtos {
+  id        String  @id @db.VarChar(255)
+  nome      String  @db.VarChar(255)
+  descri__o String  @map("descrição") @db.VarChar(255)
+  unidade   String  @db.VarChar(255)
+  pre_o     Decimal @map("preço") @db.Decimal(10, 2)
+}
+
+model servicos {
+  id    String  @id @db.VarChar(255)
+  nome  String  @db.VarChar(255)
+  preco Decimal @db.Decimal(10, 2)
+  obs   String? @db.VarChar(255)
+}
+
+model visita_produtos {
+  id_visita          String   @db.VarChar(255)
+  id_visita_produtos String   @id @db.VarChar(255)
+  id_produto         String   @db.VarChar(255)
+  nome_produto       String?  @db.VarChar(255)
+  unidade            String?  @db.VarChar(255)
+  quantidade         Int?
+  preco              Decimal? @db.Decimal(10, 2)
+  total              Decimal? @db.Decimal(10, 2)
+}
+
+model visita_servicos {
+  id_visita          String   @db.VarChar(255)
+  id_visita_servicos String   @id @db.VarChar(255)
+  id_servico         String   @db.VarChar(255)
+  nome_servico       String?  @db.VarChar(255)
+  preco              Decimal? @db.Decimal(10, 2)
+  obs                String?  @db.VarChar(255)
+  nome_aprovador     String?  @db.VarChar(255)
+  documento          String?  @db.VarChar(255)
+  hora               String?  @db.VarChar(255)
+  assinatura         String?  @db.VarChar(255)
+  CPF                String?  @db.VarChar(255)
+}
+
+model visitas {
+  id_visita      String    @id @unique(map: "id") @db.VarChar(255)
+  data_visita    String?   @db.VarChar(255)
+  tecnico        String?   @db.VarChar(255)
+  cliente        String?   @db.VarChar(255)
+  tipo_visita    String?   @db.VarChar(255)
+  tem_produtos   String?   @db.VarChar(255)
+  tem_medicao    String?   @db.VarChar(255)
+  tem_manutencao String?   @db.VarChar(255)
+  horainicial    String?   @db.VarChar(255)
+  horafinal      String?   @db.VarChar(255)
+  observacao     String?   @db.VarChar(255)
+  data_formatted DateTime? @db.DateTime(0)
+}
