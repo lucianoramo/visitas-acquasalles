@@ -1,7 +1,12 @@
 "use client";
-import "../../styles/globals.css";
+import "./globals.css";
 import Main from "./components/Main";
+import { ThemeProvider } from "@material-tailwind/react";
 
-export default function Home({ Component, pageProps }: { Component: React.ComponentType<any>; pageProps: any }) {
-	return <Main {...pageProps} />;
+export default function Home() {
+	return (
+		<ThemeProvider>
+			<Main />
+		</ThemeProvider>
+	);
 }

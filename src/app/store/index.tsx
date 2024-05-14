@@ -1,28 +1,33 @@
 // store.ts
 import { create } from "zustand";
+import { ClientType, MedicaoType, VisitaType } from "../../../types";
 
 type State = {
-	clients: any[];
+	clients: ClientType[];
+	visitas: VisitaType[];
+	medicoes: MedicaoType[];
 	selectedClient: any | null;
-	orders: any[];
-	setClients: (clients: any[]) => void;
-	setSelectedClient: (client: any) => void;
-	setOrders: (orders: any[]) => void;
 	startDate: Date | null;
 	endDate: Date | null;
+	setClients: (clients: ClientType[]) => void;
+	setVisitas: (visitas: VisitaType[]) => void;
+	setMedicoes: (medicoes: MedicaoType[]) => void;
+	setSelectedClient: (client: any) => void;
 	setStartDate: (date: Date) => void;
 	setEndDate: (date: Date) => void;
 };
 
 const useStore = create<State>((set) => ({
 	clients: [],
+	visitas: [],
+	medicoes: [],
 	selectedClient: null,
-	orders: [],
+	startDate: null,
+	endDate: null,
 	setClients: (clients) => set({ clients }),
+	setVisitas: (visitas) => set({ visitas }),
+	setMedicoes: (medicoes) => set({ medicoes }),
 	setSelectedClient: (client) => set({ selectedClient: client }),
-	setOrders: (orders) => set({ orders }),
-	startDate: new Date(),
-	endDate: new Date(),
 	setStartDate: (date) => set(() => ({ startDate: date })),
 	setEndDate: (date) => set(() => ({ endDate: date })),
 }));

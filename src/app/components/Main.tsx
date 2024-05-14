@@ -1,59 +1,31 @@
 "use client";
-import React, { useEffect, ChangeEvent } from "react";
-import Select from "react-select";
+import React from "react";
 import ClientInfo from "./ClientInfo";
 import useStore from "../store";
 import VisitasTable from "./VisitasTable";
 import DateFields from "./DateFields";
-import { Client } from "../../../types";
+import MedicoesTable from "./MedicoesTable";
+import ProdutosEntreguesTable from "./ProdutosEntreguesTable";
+import Header from "./Header";
+import MedicaoMensal from "./MedicaoMensal";
 
 // Define the type for the Select option
-interface Option {
-	value: string;
-	label: string;
-}
 
 const Main: React.FC = () => {
-	const { clients, selectedClient, setClients, setSelectedClient } = useStore();
-
-	// Fetch all clients
-	useEffect(() => {
-		fetch("/api/clients")
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response}`);
-				}
-				return response.json();
-			})
-			.then((data: Client[]) =>
-				setClients(data.map((client) => ({ value: client.id, label: client.nome, ...client })))
-			)
-			.catch((error) => {
-				console.error("Error fetching clients:", error);
-			});
-	}, []);
-
-	const handleChange = (selectedOption: Option | null) => {
-		setSelectedClient(selectedOption);
-		console.log(`Option selected:`, selectedOption);
-	};
-
+	const { selectedClient, visitas } = useStore();
 	return (
-		<section className="flex bg-slate-600 p-10 m-10">
-			<div className="bg-slate-800">
-				<Select
-					value={selectedClient}
-					onChange={handleChange}
-					options={clients}
-					placeholder="Selecione um cliente"
-					className="w-1/2 p-2 m-2"
-				/>
-				{selectedClient && <DateFields />}
+		<div className='container m-auto p-10 items-center justify-center'>
+			<div className='flex flex-col bg-white shadow-md rounded-md justify-center items-center'>
+				<Header />
+				<DateFields />
+				<MedicaoMensal />
 				{selectedClient && <ClientInfo />}
 				{/* {selectedClient && <OrdersTable client={selectedClient} />} */}
 				{selectedClient && <VisitasTable clientId={selectedClient.value} />}
+				{selectedClient && <MedicoesTable ids={visitas.map((v) => v.id_visita)} />}
+				{selectedClient && <ProdutosEntreguesTable ids={visitas.map((v) => v.id_visita)} />}
 			</div>
-		</section>
+		</div>
 	);
 };
 

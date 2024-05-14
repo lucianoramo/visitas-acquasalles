@@ -8,8 +8,7 @@ const ClientInfo: React.FC = () => {
 	if (!selectedClient) return <div>Select a client</div>;
 
 	return (
-		<div>
-			<h2>{selectedClient?.nome}</h2>
+		<div className="flex p-2 mt-4 items-start flex-col">
 			<table className="table-auto w-full">
 				<tbody>
 					<tr className="border-b">

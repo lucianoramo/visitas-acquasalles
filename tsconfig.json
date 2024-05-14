@@ -22,6 +22,6 @@
 			"@/*": ["./src/app/*", "./src/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".nxext/types/**/*.ts", ".next/types/**/*.ts"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".nxext/types/**/*.ts", ".next/types/**/*.ts", "prismaTest.js"],
 	"exclude": ["node_modules"]
 }
