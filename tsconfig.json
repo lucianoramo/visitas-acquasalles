@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"forceConsistentCasingInFileNames": true,
 		"target": "es2017",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
@@ -22,6 +23,13 @@
 			"@/*": ["./src/app/*", "./src/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".nxext/types/**/*.ts", ".next/types/**/*.ts", "prismaTest.js"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".nxext/types/**/*.ts",
+		".next/types/**/*.ts",
+		"prismaTest.js"
+	],
 	"exclude": ["node_modules"]
 }

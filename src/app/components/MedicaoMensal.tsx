@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-import { Checkbox, Card, List, ListItem, ListItemPrefix, Typography } from "@material-tailwind/react";
-import type { CardProps } from "@material-tailwind/react";
-type variant = "filled" | "gradient";
-type color = "light" | "dark";
-
-import type { CheckboxProps } from "@material-tailwind/react";
-import type { CheckboxStylesType } from "@material-tailwind/react";
+import React from "react";
+import useStore from "@/store";
 
 const items = [
 	"pH",
@@ -22,12 +16,12 @@ const items = [
 ];
 
 function MedicaoMensal() {
-	const [selectedItems, setSelectedItems] = useState<string[]>([]);
+	const { selectedItemsMensal, setSelectedItemsMensal } = useStore();
 
-	const handleCheckboxChange = (event: { target: { name: string; checked: boolean } }) => {
+	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, checked } = event.target;
 
-		setSelectedItems((prevState: string[]) => {
+		setSelectedItemsMensal((prevState: string[]) => {
 			if (checked) {
 				return [...prevState, name];
 			} else {
@@ -37,22 +31,39 @@ function MedicaoMensal() {
 	};
 
 	return (
-		<div className="flex w-[80%] p-4 justify-between items-center">
-			{items.map((item) => (
-				<div
-					key={item}
-					className="p-2">
-					<label className="flex flex-row m-2">
+		<>
+			<h1 className='text-2xl mx-8'>Medições Mensais</h1>
+			<div className='flex flex-wrap gap-2 px-8 my-8'>
+				{items.map((item) => (
+					<div
+						className={`bg-slate-100 shadow-md p-2 flex flex-col rounded-lg box-border ${
+							selectedItemsMensal.includes(item) ? "selected" : ""
+						}`}
+						key={item}>
+						<label className='mb-2'>
+							<input
+								className='mr-2 font-semibold'
+								type='checkbox'
+								name={item}
+								checked={selectedItemsMensal.includes(item)}
+								onChange={handleCheckboxChange}
+							/>
+							{item}
+						</label>
+
 						<input
-							type="checkbox"
+							title={item}
+							placeholder='valor'
+							className='mr-2 p-2 w-[150px] h-8'
+							type='text'
 							name={item}
+							// Assuming these input fields should have their own change handlers, otherwise remove this line
 							onChange={handleCheckboxChange}
 						/>
-						{item}
-					</label>
-				</div>
-			))}
-		</div>
+					</div>
+				))}
+			</div>
+		</>
 	);
 }
 

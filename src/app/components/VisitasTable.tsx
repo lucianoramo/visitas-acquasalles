@@ -31,72 +31,30 @@ const VisitasTable: React.FC<VisitasTableProps> = () => {
 	}, [selectedClient, startDate, endDate]);
 
 	return (
-		<div className="p-4">
+		<div className='p-4 overflow-x-auto'>
 			<p>Total Visitas {visitas.length} </p>
-			<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 row-">
-				<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+			<table className='table table-zebra table-xs'>
+				<thead className=''>
 					<tr h-6>
-						<th
-							scope="col"
-							className="px-6 py-3">
-							Data Visita
-						</th>
-						<th
-							scope="col"
-							className="px-6 py-3">
-							Técnico
-						</th>
-						<th
-							scope="col"
-							className="px-6 py-3">
-							Tipo Visita
-						</th>
-						<th
-							scope="col"
-							className="px-6 py-3">
-							Tem Produtos
-						</th>
-						<th
-							scope="col"
-							className="px-6 py-3">
-							Tem Medição
-						</th>
-						<th
-							scope="col"
-							className="px-6 py-3">
-							Tem Manutenção
-						</th>
-						<th
-							scope="col"
-							className="px-6 py-3">
-							Hora Inicial
-						</th>
-						<th
-							scope="col"
-							className="px-6 py-3">
-							Hora Final
-						</th>
-						<th
-							scope="col"
-							className="px-6 py-3">
-							Observação
-						</th>
+						<th scope='col'>Data Visita</th>
+						<th scope='col'>Técnico</th>
+						<th scope='col'>Tipo Visita</th>
+						<th scope='col'>Hora Inicial</th>
+						<th scope='col'>Hora Final</th>
+						<th scope='col'>Observação</th>
 					</tr>
 				</thead>
-				<tbody className="p-2">
+				<tbody className='p-2'>
 					{visitas.map((visita) => (
 						<tr
 							key={visita.id_visita}
-							className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 h-4">
-							<td className="px-6 py-4">{visita.data_visita}</td>
-							<td className="px-6 py-4">{visita.tecnico}</td>
-							<td className="px-6 py-4">{visita.tipo_visita}</td>
-							<td className="px-6 py-4">{visita.tem_produtos}</td>
-							<td className="px-6 py-4">{visita.tem_medicao}</td>
-							<td className="px-6 py-4">{visita.tem_manutencao}</td>
-							<td className="px-6 py-4">{visita.horainicial}</td>
-							<td className="px-6 py-4">{visita.horafinal}</td>
-							<td className="px-6 py-4">{visita.observacao}</td>
+							className=''>
+							<td className=''>{visita.data_visita}</td>
+							<td className=''>{visita.tecnico}</td>
+							<td className=''>{visita.tipo_visita}</td>
+							<td className=''>{visita.horainicial}</td>
+							<td className=''>{visita.horafinal}</td>
+							<td className=''>{visita.observacao}</td>
 						</tr>
 					))}
 				</tbody>

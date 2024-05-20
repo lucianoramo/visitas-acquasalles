@@ -11,7 +11,7 @@ interface Option {
 	label: string;
 }
 
-const DateFields: React.FC = () => {
+const Filters: React.FC = () => {
 	const { startDate, endDate, setStartDate, setEndDate, selectedClient, setSelectedClient, clients, setClients } =
 		useStore();
 
@@ -36,34 +36,37 @@ const DateFields: React.FC = () => {
 	};
 
 	return (
-		<div className="flex justify-around w-full items-center bg-blue-gray-50 p-4">
-			<label className="p-2">
+		<div className='flex justify-around w-full items-center bg-blue-gray-50 p-4'>
+			<label className='p-2'>
 				Data Inicial:
 				<DatePicker
 					selected={startDate}
 					onChange={(date) => setStartDate(date as Date)}
-					className="border p-1 rounded"
+					className='border p-1 rounded'
 					shouldCloseOnSelect={true}
 				/>
 			</label>
-			<label className="p-2">
+			<label className='p-2'>
 				Data Final:
 				<DatePicker
 					selected={endDate}
 					onChange={(date) => setEndDate(date as Date)}
-					className="border p-1 rounded"
+					className='border p-1 rounded'
 					shouldCloseOnSelect={true}
 				/>
 			</label>
-			<Select
-				value={selectedClient}
-				onChange={handleChange}
-				options={clients}
-				placeholder="Selecione um cliente"
-				className="p-2 w-96"
-			/>
+			<label className='p-2'>
+				Cliente:
+				<Select
+					value={selectedClient}
+					onChange={handleChange}
+					options={clients}
+					placeholder='Selecione um cliente'
+					className='p-1 w-96'
+				/>
+			</label>
 		</div>
 	);
 };
 
-export default DateFields;
+export default Filters;

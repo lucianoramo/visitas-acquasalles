@@ -30,10 +30,10 @@ const ProdutosEntreguesTable: React.FC<ProdutosEntreguesTableProps> = (ids) => {
 	}, [visitas]);
 
 	return (
-		<div className="p-4">
-			<p>Total Mediçoes: {produtosEntregues.length} </p>
-			<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-				<thead className="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+		<div className='p-4'>
+			<p>Total Produtos: {produtosEntregues.length} </p>
+			<table className='table table-zebra table-xs'>
+				<thead className=''>
 					<tr>
 						<th>Nome</th>
 						<th>Quantidade</th>
@@ -42,7 +42,7 @@ const ProdutosEntreguesTable: React.FC<ProdutosEntreguesTableProps> = (ids) => {
 						<th>Total</th>
 					</tr>
 				</thead>
-				<tbody className="table-auto p-2">
+				<tbody className=''>
 					{produtosEntregues.map((produto) => (
 						<tr key={produto.id_visita_produtos}>
 							<td>{produto.nome_produto}</td>
